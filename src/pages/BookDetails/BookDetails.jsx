@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import { addToStoredDB } from '../../utility/addToDB';
+import { ToastContainer, toast } from 'react-toastify'; // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -10,23 +12,20 @@ const BookDetails = () => {
   const { image } = singleBook;
 
   const handleMarkAsRead = id => {
-    //  Store with Id
-    // where to store
-    // array or collection
-    // if book already exist  the show a  alart
-    //  if book not exist then push in the collection or array
+    // Show a toast notification
+    toast.success("Book added to your read list!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
-    // MySwal.fire({
-    //     title: "Good job!",
-    //     text: "You clicked the button!",
-    //     icon: "success"
-    //   });
-
-    //toast("Wow so easy!")
-    
-    addToStoredDB(id)
-}
-
+    // Add the book to the stored DB
+    addToStoredDB(id);
+  };
 
   return (
     <div className="flex flex-col lg:flex-row lg:items-start gap-12 mt-8 lg:mt-16 mb-8 lg:mb-16 mx-4 lg:mx-8">
@@ -73,8 +72,10 @@ const BookDetails = () => {
             <p>{singleBook.rating}</p>
           </div>
         </div>
+        <ToastContainer /> {/* Toast container to display notifications */}
         <div className="space-x-4 mt-7 flex justify-center lg:justify-start">
-          <button onClick={() => handleMarkAsRead(id)}
+          <button
+            onClick={() => handleMarkAsRead(bookId)} // Pass the bookId to the handler
             className="btn border-2 text-lg font-semibold bg-white border-gray-300 px-5 py-2 rounded-md shadow-sm"
           >
             Read Books
