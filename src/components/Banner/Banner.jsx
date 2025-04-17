@@ -6,8 +6,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import booksData from '../../../public/booksData.json';
+import { Link } from 'react-router';
 
 const Banner = () => {
+ 
 
   
   return (
@@ -63,9 +65,11 @@ const Banner = () => {
                     {book.description || "A captivating read that will keep you engaged from start to finish."}
                   </p>
                   <div className="flex flex-wrap gap-4 mt-6">
+                    <Link to={`/bookDetails/${book.bookId}`}>
                     <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                       View Details
                     </button>
+                    </Link>
                     <button className="px-8 py-3 border-2 border-indigo-600 text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition-all duration-300">
                       Add to Wishlist
                     </button>

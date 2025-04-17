@@ -10,7 +10,10 @@ const Root = () => {
             <Navbar></Navbar>
             </div>
             <Outlet></Outlet>
+            <div className='mt-10'>
             <Footer></Footer>
+            </div>
+            
         </div>
     );
 };
